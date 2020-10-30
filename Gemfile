@@ -41,7 +41,8 @@ gem 'jbuilder', '~> 2.7'
 
  gem 'acts_as_favoritor', '~> 5.0'
 
-# Reduces boot times through caching; required in config/boot.rb
+ gem 'figaro', '~> 1.2'
+#Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
@@ -53,6 +54,11 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
+  gem 'letter_opener', '~> 1.7'
+  gem 'letter_opener_web', '~> 1.4'
+
+
+
 end
 
 group :test do
