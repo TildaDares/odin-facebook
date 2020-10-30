@@ -23,7 +23,23 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+ gem 'image_processing', '~> 1.2'
+
+ gem 'bootstrap_form', '~> 4.5'
+
+ gem 'active_storage_validations', '~> 0.9.0'
+
+ gem 'devise', '~> 4.7', '>= 4.7.3'
+
+ gem 'omniauth-facebook', '~> 8.0'
+
+ gem 'omniauth-google-oauth2', '~> 0.8.0'
+
+ gem 'omniauth', '~> 1.9', '>= 1.9.1'
+
+ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
+
+ gem 'acts_as_favoritor', '~> 5.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
