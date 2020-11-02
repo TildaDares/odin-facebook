@@ -1,6 +1,6 @@
 <%= render 'nav' %>
 <div class="d-flex justify-content-between">
-  <div class="shadow-sm col-lg-3 pl-4 pt-4 dis-none" style="height:100vh; position:sticky; top:64px;"> 
+  <div class="shadow-sm col-lg-3 pl-4 pt-4 dis-none" style="height:85vh; position:sticky; top:64px;"> 
     <div>
       <%= link_to current_user, class: "text-decoration-none" do %>
         <%= image_tag(current_user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "35x35", alt: "Profile pic") %>
@@ -119,7 +119,7 @@
     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
   </div>
 
-  <div class="shadow-sm col-lg-3 pl-4 dis-none" style="height:100vh; position:sticky; top:64px;">
+  <div class="shadow-sm col-lg-3 pl-4 dis-none" style="height:85vh; position:sticky; top:64px;">
     <h3 class="text-color mt-3 mb-3">Suggested</h3>
     <hr class="solid">
     <% @users.each do |user| %>
