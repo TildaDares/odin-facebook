@@ -1,3 +1,4 @@
+<% content_for(:title, 'Settings') %>
 <div class="pb-5">
   <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <div class="pt-2 shadow pb-4 mt-5 container col-lg-5 mb-5 col-md-6">

@@ -1,3 +1,4 @@
+<% content_for(:title, 'New Post') %>
 <%= render 'nav' %>
 <div class="container shadow mt-5 pb-4 col-lg-6"> 
   <%= bootstrap_form_with(model: @post, local: true) do |f| %>
