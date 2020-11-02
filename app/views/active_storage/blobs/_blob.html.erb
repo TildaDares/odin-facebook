@@ -1,14 +1,12 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
-  <% if blob.representable? %>
-    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]) %>
+  <% if blob.image? %>
+    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 400, 300 ] : [ 800, 600 ]) %>
   <% end %>
-
-  <figcaption class="attachment__caption">
-    <% if caption = blob.try(:caption) %>
-      <%= caption %>
-    <% else %>
-      <span class="attachment__name"><%= blob.filename %></span>
-      <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
-    <% end %>
-  </figcaption>
+  <% if blob.video? %>
+    <%= video_tag url_for(blob.attachable),
+    preload: "auto",
+    controls: "controls",
+    width: "360",
+    height: "240" %>
+  <% end %>
 </figure>

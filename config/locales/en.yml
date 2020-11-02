@@ -30,4 +30,43 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  datetime:
+    distance_in_words:
+      short:
+        about_x_hours:
+          one: 1 hr
+          other: "%{count} hrs"
+        about_x_months:
+          one: 1 month
+          other: "%{count} months"
+        about_x_years:
+          one: 1 yr
+          other: "%{count} yrs"
+        almost_x_years:
+          one: 1 yr
+          other: "%{count} yrs"
+        half_a_minute: 30 secs
+        less_than_x_seconds:
+          one: 1 sec
+          other: "%{count} secs"
+        less_than_x_minutes:
+          one: 1 min
+          other: "%{count} mins"
+        over_x_years:
+          one: 1 yr
+          other: "%{count} yrs"
+        x_seconds:
+          one: 1 sec
+          other: "%{count} secs"
+        x_minutes:
+          one: 1 min
+          other: "%{count} mins"
+        x_days:
+          one: 1 day
+          other: "%{count} days"
+        x_months:
+          one: 1 month
+          other: "%{count} months"
+        x_years:
+          one: 1 yr
+          other: "%{count} yrs"

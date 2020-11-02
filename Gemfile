@@ -27,13 +27,13 @@ gem 'jbuilder', '~> 2.7'
 
  gem 'bootstrap_form', '~> 4.5'
 
+ gem 'bootstrap', '~> 4.5', '>= 4.5.2'
+
  gem 'active_storage_validations', '~> 0.9.0'
 
  gem 'devise', '~> 4.7', '>= 4.7.3'
 
  gem 'omniauth-facebook', '~> 8.0'
-
- gem 'omniauth-google-oauth2', '~> 0.8.0'
 
  gem 'omniauth', '~> 1.9', '>= 1.9.1'
 
@@ -42,6 +42,8 @@ gem 'jbuilder', '~> 2.7'
  gem 'acts_as_favoritor', '~> 5.0'
 
  gem 'figaro', '~> 1.2'
+
+ gem 'activerecord-session_store', '~> 1.1', '>= 1.1.3'
 #Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -56,9 +58,6 @@ group :development do
   gem 'listen', '~> 3.2'
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
-
-
-
 end
 
 group :test do

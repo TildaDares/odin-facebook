@@ -1,0 +1,12 @@
+<%= render 'nav' %>
+<div class="container shadow mt-5 pb-4 col-lg-6"> 
+  <%= bootstrap_form_with(model: @post, local: true) do |f| %>
+    <div class="profile-pic">
+      <%= image_tag(current_user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "25x25") %>
+    </div>
+    <%= f.rich_text_area :body, style: "overflow-wrap:break-word;", label: "New Post", label_class: "mb-4 text-color", placeholder: "What's on your mind?" %>
+    <div class="d-flex justify-content-end">
+      <%= f.submit "Create post", class: "btn shadow bg-color text-white text-center" %>
+    </div>
+  <% end %>
+</div>
