@@ -13,5 +13,6 @@ This project is a Facebook clone. Read more [here](https://www.theodinproject.co
  - Add/Remove friends
  - Search for users, friends or posts
 
-The app has basic tests
+The app has basic tests.
+
  [Live Preview](https://sheltered-lowlands-27506.herokuapp.com/)
