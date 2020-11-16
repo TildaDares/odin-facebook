@@ -1,0 +1,7 @@
+<div>
+  <%= link_to user, class: "text-decoration-none" do %>
+    <%= image_tag(user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "30x30", alt: "Profile pic") %>
+    <%= user.username %>
+  <% end %>
+</div>
+<p><p>

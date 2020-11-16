@@ -1,2 +1,118 @@
 <% content_for(:title, 'Post') %>
-<%= @post.body %>
+<%= render '/posts_shared/nav' %>
+<div class="d-flex justify-content-between">
+  <%= render '/posts_shared/left_sidebar' %>
+  <div class="container col-lg-6 d-flex justify-content-between flex-row w-stretch">
+    <div class="w-100 mb-5">
+      <%= render 'posts_shared/nav_buttons' %>
+
+      <div class="shadow-sm pt-3 pl-4 pr-4 pb-5 mt-1">
+        <%= link_to :back do %>
+          <i class="fas fa-arrow-left mb-1" style="font-size: 1.2rem"></i>
+        <% end %>
+        <hr class="solid arrow">
+        <div class="d-flex justify-content-between">
+          <div>
+            <div>
+              <%= link_to @post.user, class: "text-decoration-none" do %>
+                <%= image_tag(@post.user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "30x30", alt: "Profile pic") %>
+              <% end %>
+              <strong><span style="font-size:1.1rem"><%= @post.user.username %></span></strong><br/>
+            </div>
+            <div>
+              <small class="text-muted ml-3 pl-4" style="font-size:0.8rem"><%= time_difference(@post.created_at) %>.</small>
+            </div>
+          </div>
+          <div class="dropleft btn-group">
+            <button class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if @post.user == current_user %>
+                <i class="fas fa-chevron-down text-muted"></i>
+              <% end %>
+            </button>
+            <div class="dropdown-menu">
+              <%= link_to "Delete post", post_path(@post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, class: "dropdown-item" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2" style="font-size: 1.6rem">
+          <%= @post.body %>
+        </div>
+        <div class="d-flex justify-content-around mt-5 post-share">
+          <%= link_to toggle_favorite_post_path(@post), remote: true, method: :post, class: "text-decoration-none" do %>
+            <div style="font-size: 1.4rem"><%= render 'like_button', post: @post %></div>
+          <% end %>
+          <div style="font-size: 1.4rem">
+            <i class="far fa-comment text-muted"></i>
+            <span class="text-muted"><%= @post.comments.size %></span>
+          </div>
+          <div class="social-likes social-likes_single" style="font-size: 1.4rem" data-counters="no" data-url="https://sheltered-lowlands-27506.herokuapp.com/posts/<%= @post.id %>" data-title="Check out my post" data-single-title="">
+            <div class="facebook" title="Share link on Facebook">Facebook</div>
+            <div class="twitter" data-via="B_eautifulChaos" title="Share link on Twitter">Twitter</div>
+            <div class="pinterest" title="Share image on Pinterest" data-media="https://unsplash.com/photos/4wz1YsANFB0">Pinterest</div>
+          </div>
+        </div>
+
+
+      <hr class="solid mt-5">
+      <div class="mt-5">
+        <hr class="solid">
+        <% @post.comments.each do |comment| %>
+          <div class="pl-4 pr-4 mt-5 mb-5">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div>
+                  <%= link_to comment.user, class: "text-decoration-none" do %>
+                    <%= image_tag(comment.user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "25x25", alt: "Profile pic") %>
+                  <% end %>
+                  <strong><span style="font-size:0.9rem"><%= comment.user.username %></span></strong>
+                  <small class="text-muted ml-1" style="font-size:0.7rem">. <span class="ml-1"><%= time_difference(comment.created_at) %></span></small>
+                </div>
+              </div>
+              <div class="dropleft btn-group">
+                <button class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <% if @post.user == current_user || comment.user == current_user %>
+                    <i class="fas fa-chevron-down text-muted"></i>
+                  <% end %>
+                </button>
+                <div class="dropdown-menu">
+                  <%= link_to "Delete comment", post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }, class: "dropdown-item" %>
+                </div>
+              </div>
+            </div>
+  
+            <div class="mt-2 comment-img">
+              <%= link_to post_comment_path(@post, comment), class: "text-decoration-none" do %>
+                <%= comment.comment %>
+              <% end %>
+            </div>
+            <div class="d-flex justify-content-around mt-3">
+              <%= link_to toggle_favorite_post_comment_path(@post, comment), remote: true, method: :post, class: "text-decoration-none" do %>
+                <%= render '/comments/like_button', comment: comment %>
+              <% end %>
+              <div class="social-likes social-likes_single" data-counters="no" data-url="https://sheltered-lowlands-27506.herokuapp.com/posts/<%= @post.id %>/comments/<%= comment.id %>" data-title="Check out my comment" data-single-title="">
+                <div class="facebook" title="Share link on Facebook">Facebook</div>
+                <div class="twitter" data-via="B_eautifulChaos" title="Share link on Twitter">Twitter</div>
+                <div class="pinterest" title="Share image on Pinterest" data-media="https://unsplash.com/photos/4wz1YsANFB0">Pinterest</div>
+              </div>
+            </div>
+
+            <hr class="solid">
+          </div>
+        <% end %>
+      </div>
+      
+      </div>
+    </div>
+    <div class="comment-form container shadow bg-white pb-3">
+      <%= bootstrap_form_with(url: "/posts/#{ @post.id }/comments", method: :post, local: true) do |f| %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.rich_text_area :comment, hide_label: true, placeholder: "Write your comment", input_group_class: 'trix-comment', required: true %>
+        <div class="pill">
+          <%= f.submit "Reply", class: "btn bg-color rounded-pill text-white justify-content-end"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= render '/posts_shared/right_sidebar' %>
+</div>

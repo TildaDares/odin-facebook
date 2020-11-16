@@ -23,41 +23,46 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
- gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
- gem 'bootstrap_form', '~> 4.5'
+gem 'bootstrap_form', '~> 4.5'
 
- gem 'bootstrap', '~> 4.5', '>= 4.5.2'
+gem 'bootstrap', '~> 4.5', '>= 4.5.2'
 
- gem 'active_storage_validations', '~> 0.9.0'
+gem 'devise', '~> 4.7', '>= 4.7.3'
 
- gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'omniauth-facebook', '~> 8.0'
 
- gem 'omniauth-facebook', '~> 8.0'
+gem 'omniauth', '~> 1.9', '>= 1.9.1'
 
- gem 'omniauth', '~> 1.9', '>= 1.9.1'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 
- gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
+gem 'acts_as_favoritor', '~> 5.0'
 
- gem 'acts_as_favoritor', '~> 5.0'
+gem 'figaro', '~> 1.2'
 
- gem 'figaro', '~> 1.2'
+gem 'jquery-rails', '~> 4.4'
 
- gem 'activerecord-session_store', '~> 1.1', '>= 1.1.3'
-#Reduces boot times through caching; required in config/boot.rb
+gem 'activerecord-session_store', '~> 1.1', '>= 1.1.3'
+# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'faker', '~> 2.14'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
+  gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
+  gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.2'
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
+  gem 'listen', '~> 3.2'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
@@ -69,4 +74,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

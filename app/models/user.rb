@@ -3,10 +3,22 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :posts, dependent: :destroy
   has_one_attached :avatar
-  after_commit :add_default_avatar, on: %i[create]
-  validates :username, presence: true, length: {minimum:1}
+  has_one_attached :header
+  has_many :comments
+  has_many :notifications
+  has_many :friendships
+  has_many :friends, through: :friendships
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
+  acts_as_favoritor
+  after_commit :add_default_avatar, on: :create
+  after_commit :add_default_header, on: :create
+  after_create :send_confirmation_email
+  validates :username, presence: true, length: { minimum: 1, maximum: 50 }
+  validates :bio, length: { maximum: 160 }
+  validates :location, length: { maximum: 30 }
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, 
+         :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
   def self.create_from_provider_data(provider_data)
@@ -19,23 +31,77 @@ class User < ApplicationRecord
 
   def avatar_thumbnail
     if avatar.attached?
-      avatar.variant(resize: "150x150!").processed
+      avatar.variant(resize: '150x150!').processed
     else
-      'default.jpg'
+      'avatar.jpg'
     end
   end
 
+  def header_thumbnail
+    if header.attached?
+      header
+    else
+      'header.jpg'
+    end
+  end
+
+  def friend_requests
+    inverse_friends - friends
+  end
+
+  def mutual_friends
+    friends.map { |friend| friend if friend.friends.include?(self) }.compact
+  end
+
+  def sent_requests
+    friends.map { |friend| friend unless friend.friends.include?(self) }.compact
+  end
+
+  def friendship_status(user)
+    if friend_requests.include?(user)
+      'Accept Request'
+    elsif mutual_friends.include?(user)
+      'Unfriend'
+    elsif sent_requests.include?(user)
+      'Cancel Request'
+    else
+      'Add Friend'
+    end
+  end
+
+  def send_confirmation_email
+    ConfirmationMailer.with(user: self).confirmation_email.deliver_now
+  end
+
+  def strangers
+    User.all - (friend_requests + mutual_friends + sent_requests)
+  end
+
   private
-   def add_default_avatar
+
+  def add_default_header
+    unless header.attached?
+      header.attach(
+        io: File.open(
+          Rails.root.join(
+            'app', 'assets', 'images', 'header.jpg'
+          )
+        ), filename: 'header.jpg',
+        content_type: 'image/jpg'
+      )
+    end
+  end
+
+  def add_default_avatar
     unless avatar.attached?
       avatar.attach(
         io: File.open(
           Rails.root.join(
-            'app', 'assets', 'images', 'default.jpg'
+            'app', 'assets', 'images', 'avatar.jpg'
           )
-        ), filename: 'default.jpg',
+        ), filename: 'avatar.jpg',
         content_type: 'image/jpg'
       )
     end
-   end
+  end
 end

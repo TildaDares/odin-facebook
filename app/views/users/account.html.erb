@@ -1,0 +1,40 @@
+<% content_for(:title, 'Account') %>
+<%= render '/posts_shared/nav' %>
+<div class="d-flex justify-content-between account-justify">
+  <%= render '/posts_shared/left_sidebar' %>
+  <div class="container col-sm-12 col-lg-9 w-stretch">
+    <div class="d-flex mt-3 ml-3">
+      <%= link_to :back do %>
+        <i class="fas fa-arrow-left mr-3" style="font-size: 1.4rem"></i>
+      <% end %>
+      <h4 class="ml-3">Account Settings</h4>
+    </div>
+    <hr class="solid">
+    <div class="row h-100">
+      <div class="col-lg-3 col-sm-4 mt-3 account-border">
+        <div class="nav flex-column nav-pills account" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-account-tab" data-toggle="pill" href="#v-pills-account" role="tab" aria-controls="v-pills-account" aria-selected="true">
+            <div class="d-flex justify-content-between">
+              Account
+              <i class="fas fa-chevron-right text-muted mt-1 chevron-right"></i>
+              <i class="fas fa-chevron-down text-muted mt-1 chevron-down"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-3 account-border col-sm-8">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show account active" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab">
+            <%= link_to "Edit Account", edit_user_registration_path(current_user), class: "text-decoration-none text-dark user-form w-100 d-block" %>
+            <hr class="solid">
+            <%= link_to "Change Password", new_user_password_path, class: "text-decoration-none text-dark user-form w-100 d-block" %>
+            <hr class="solid">
+            <%= link_to "Deactivate account", registration_path(current_user), data: { confirm: "Are you sure you want to deactivate this account?" }, method: :delete, class: "text-decoration-none text-color" %></p>
+            <hr class="solid">
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you want to logout?" }, class: "text-dark" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

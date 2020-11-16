@@ -1,0 +1,290 @@
+    .small {
+        font-size: 0.8rem;
+    }
+    
+    a {
+        color: #6c757d
+    }
+    
+    .odinbook {
+        font-family: 'Spectral', serif;
+        font-size: 6rem;
+    }
+    
+    .alert-pos {
+        //alerts
+        position: fixed;
+        bottom: 15px;
+        height: auto;
+        margin: auto;
+        right: 50%;
+        left: 50%;
+        margin-left: -25%;
+        z-index: 2000;
+        width: 50%;
+    }
+    
+    .circle {
+        //new post
+        border-radius: 50%;
+        height: 60px;
+        position: fixed;
+        bottom: 12px;
+        width: 60px;
+    }
+    
+    .profile-pic {
+        position: relative;
+        top: 120px;
+    }
+    
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
+        background-color: #DB1313;
+    }
+    
+    .top-nav .nav-link:hover {
+        border: 1px solid #f9eaea;
+    }
+    
+    .svg-inline--fa.text-color:active {
+        color: white;
+    }
+    
+    .nav-item a {
+        color: #DB1313;
+    }
+    
+    .social-likes__widget {
+        border: none;
+    }
+    
+    .trix-comment .trix-button--icon-link,
+    .trix-comment .trix-button-group--block-tools,
+    .trix-toolbar .trix-button-group {
+        display: none;
+    }
+    
+    .trix-comment {
+        flex-direction: column-reverse;
+    }
+    
+    .trix-comment>.form-control,
+    .trix-comment>.form-control-plaintext,
+    .trix-comment>.custom-select,
+    .trix-comment>.custom-file {
+        width: 100%;
+    }
+    
+    .trix-comment trix-editor.form-control {
+        margin-left: 0;
+        height: auto;
+        width: 100%;
+        max-height: 100px;
+        overflow-y: auto;
+        padding-left: 30px;
+        word-wrap: break-word;
+        border-left: none;
+        border-top: none;
+        border-right: none;
+    }
+    
+    .trix-comment .rounded-pill {
+        height: 20px;
+    }
+    
+    .trix-comment trix-toolbar {
+        font-size: 0.6rem;
+        margin-top: 12px;
+    }
+    
+    .trix-comment trix-editor {
+        min-height: 2.5em;
+    }
+    
+    .trix-comment .form-control:focus {
+        border-color: none;
+        outline: none;
+        box-shadow: none;
+    }
+    
+    .pill {
+        display: flex;
+        justify-content: end;
+    }
+    
+    .trix-comment .trix-content img {
+        width: 30%;
+        height: 40%;
+    }
+    
+    .comment-form .form-group {
+        margin-bottom: 0;
+    }
+    
+    .comment-form {
+        max-width: 48.2%;
+        position: fixed;
+        bottom: 0;
+        z-index: 1000;
+    }
+    
+    .comment-img .trix-content img {
+        max-width: 50%;
+    }
+    
+    .comment-img a:hover {
+        color: black;
+    }
+    
+    .post-share .social-likes__icon_single {
+        background-size: 70%;
+    }
+    
+    .arrow {
+        margin-top: 0;
+    }
+    
+    .profile-pic-show {
+        top: 156px;
+        left: 25px;
+        border: 2px groove white;
+    }
+    
+    .profile input {
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
+    
+    .profile .form-control:focus {
+        border-bottom-color: red;
+        box-shadow: none;
+    }
+    
+    .img-fluid {
+        background-size: cover;
+        background-position: center;
+        max-height: 298px;
+        height: 234px;
+    }
+    
+    .show-nav .col-6 {
+        padding-left: 0;
+    }
+    
+    .show-nav .nav-link:focus {
+        background-color: none;
+    }
+    
+    .show-nav .nav-tabs .nav-link.active,
+    .nav-tabs .nav-item.show .nav-link {
+        border-color: transparent;
+        border-bottom: 2px solid #fd0c0c;
+    }
+    
+    .show-nav .nav {
+        position: sticky;
+        top: 120px;
+        z-index: 500;
+        background-color: white;
+    }
+    
+    .rounded-search {
+        border-radius: 50rem 0 0 50rem;
+        border-right: none;
+    }
+    
+    .rounded-btn {
+        border-radius: 0 50rem 50rem 0;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-left: none;
+        height: calc(1.5em + 0.75rem + 2px);
+    }
+    
+    .search-bar .form-group {
+        width: 90%;
+    }
+    
+    .search-word button {
+        all: unset;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        color: blue;
+    }
+    
+    .account .nav-link.active,
+    .account .show>.nav-link {
+        background-color: rgba(236, 234, 234, 0.64);
+        color: black;
+    }
+    
+    .account .user-form:hover {
+        border: 1px solid rgba(196, 183, 183, 0.49);
+        background-color: transparent;
+        color: black;
+    }
+    
+    .account .nav-link {
+        padding-left: 10px;
+    }
+    
+    .account-border {
+        border-right: 1px solid rgba(196, 183, 183, 0.49);
+    }
+    
+    .account-justify .container {
+        margin-left: 0;
+    }
+    
+    .chevron-down {
+        display: none;
+    }
+    
+    .w-stretch {
+        padding-left: 0;
+        padding-right: 0;
+        border-right: 1px solid #eeebeb;
+        border-left: 1px solid #eeebeb;
+    }
+    
+    @media(max-width: 1003px) {
+        .odinbook {
+            font-size: 5rem;
+        }
+        .dis-none {
+            display: none;
+        }
+        .comment-form {
+            max-width: inherit;
+        }
+    }
+    
+    @media(max-width: 582px) {
+        .profile-pic-show {
+            width: 138px;
+            height: 138px;
+            top: 162px;
+        }
+    }
+    
+    @media(max-width: 575px) {
+        .chevron-right {
+            display: none;
+        }
+        .chevron-down {
+            display: block;
+        }
+    }
+    
+    @media(max-width: 509px) {
+        .dis-sm-100 {
+            width: 100%;
+        }
+        .form-text {
+            display: none;
+        }
+    }

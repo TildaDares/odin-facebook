@@ -1,0 +1,31 @@
+<div class="col-lg-3 pl-4 pt-4 dis-none" style="height:85vh; position:sticky; top:64px;"> 
+  <div>
+    <%= link_to current_user, class: "text-decoration-none" do %>
+      <%= image_tag(current_user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "35x35", alt: "Profile pic") %>
+      <span class="text-dark" style="font-size:1.2rem"><%= current_user.username %></span><br/>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to friends_user_path(:id => current_user.id), class: "text-decoration-none" do %>
+      <i class="fas fa-user-friends fa-2x mr-2 text-color"></i>
+      <span class="text-dark" style="font-size:1.2rem">Friends</span><br/>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to "/account", class: "text-decoration-none" do %>
+      <i class="fas fa-user-cog fa-2x mr-2 text-color"></i>
+      <span class="text-dark" style="font-size:1.2rem">Account</span><br/>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to current_user, class: "text-decoration-none" do %>
+      <i class="fas fa-heart fa-2x text-color mr-2"></i>
+      <span class="text-dark" style="font-size:1.2rem">Likes</span><br/>
+    <% end %>
+  </div>
+
+  <%= link_to "Post", new_post_path, class: "btn bg-color rounded-pill text-white btn-lg mt-5 text-center" %>
+</div>

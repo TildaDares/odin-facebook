@@ -1,0 +1,7 @@
+var commentId = '<%= @comment.id %>'
+function toggleLikeButton(commentId, innerHTML) {
+  let likeButton = document.querySelector(`.like-icon-comment[data-id='${commentId}']`)
+  likeButton.classList.toggle('text-color');
+}
+$(".likes-count-comment-<%= @comment.id %>").html('<%= escape_javascript @comment.favoritors.size %>');
+toggleLikeButton(commentId);

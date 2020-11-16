@@ -1,0 +1,11 @@
+<div class="col-lg-3 pl-4 dis-none" style="height:85vh; position:sticky; top:64px;">
+  <h3 class="text-color mt-3 mb-3">Suggested</h3>
+  <hr class="solid">
+  <% all_users.each do |user| %>
+    <% next if user == current_user %>
+    <div class="d-flex justify-content-between mb-3">
+      <%= render 'posts_shared/display_users', user: user %>
+      <%= link_to "Add Friend", friendships_path(:friend_id => user), method: :post, class: "btn btn-outline-success shadow" %><br/>
+    </div>
+  <% end %>
+</div>

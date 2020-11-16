@@ -1,0 +1,52 @@
+<div class="shadow-sm pt-3 pl-4 pr-4 pb-3 mt-3">
+  <div class="d-flex justify-content-between">
+    <div>
+      <div>
+        <%= link_to post.user, class: "text-decoration-none" do %>
+          <%= image_tag(post.user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "25x25", alt: "Profile pic") %>
+        <% end %>
+        <strong><span style="font-size:0.9rem"><%= post.user.username %></span></strong><br/>
+      </div>
+      <div>
+        <small class="text-muted ml-3 pl-4" style="font-size:0.7rem"><%= time_difference(post.created_at) %>.</small>
+      </div>
+    </div>
+    <div class="dropleft btn-group">
+      <button class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <% if post.user == current_user %>
+          <i class="fas fa-chevron-down text-muted"></i>
+        <% end %>
+      </button>
+      <div class="dropdown-menu">
+        <%= link_to "Delete post", post_path(post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, class: "dropdown-item" %>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to post, class: "text-decoration-none text-dark" do %>
+    <div class="mt-2">
+      <% if post.body.to_plain_text.length > 500 %>
+        <div style="line-height: 1.9"><%= truncate(post.body.to_plain_text, length: 500) %></div>
+        <%= link_to 'read more', post %>
+      <% else %>
+        <%= post.body %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="d-flex justify-content-around mt-5">
+    <%= link_to toggle_favorite_post_path(post), remote: true, method: :post, class: "text-decoration-none" do %>
+      <%= render 'posts/like_button', post: post %>
+    <% end %>
+    <div>
+      <%= link_to post_path(post), class: "text-decoration-none" do %>
+        <i class="far fa-comment text-muted mr-1"></i>
+        <span class="text-muted"><%= post.comments.size %></span>
+      <% end %>
+    </div>
+    <div class="social-likes social-likes_single" data-counters="no" data-url="https://sheltered-lowlands-27506.herokuapp.com/posts/<%= post.id %>" data-title="Check out my post" data-single-title="">Share
+      <div class="facebook" title="Share link on Facebook">Facebook</div>
+      <div class="twitter" data-via="B_eautifulChaos" title="Share link on Twitter">Twitter</div>
+      <div class="pinterest" title="Share image on Pinterest" data-media="https://unsplash.com/photos/4wz1YsANFB0">Pinterest</div>
+    </div>
+  </div>
+</div>

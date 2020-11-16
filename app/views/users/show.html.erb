@@ -1,1 +1,124 @@
 <% content_for(:title, 'Profile') %>
+<%= render '/posts_shared/nav' %>
+<div class="d-flex justify-content-between">
+  <%= render '/posts_shared/left_sidebar' %>
+  <div class="container col-lg-6 w-stretch">
+    <ul class="nav nav-pills mb-3 pt-2 pb-2 d-flex justify-content-around shadow-sm w-100 bg-white dis-sm-100 top-nav" id="pills-tab" role="tablist" style="position:sticky; top:64px; z-index:1000">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-home-tab" data-toggle="pill tooltip" title="Home" href="/" role="tab" aria-controls="pills-home" aria-selected="false">
+          <i class="fas fa-home"></i>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-users-tab" data-toggle="pill tooltip" title="Users" href="/users" role="tab" aria-controls="pills-users" aria-selected="false">
+          <i class="fas fa-users"></i>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-friend-requests-tab" data-toggle="pill tooltip" title="Friend Requests" href="/friend_requests" role="tab" aria-controls="pills-friend-requests" aria-selected="false">
+          <i class="fas fa-user-friends"></i>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-search-tab" data-toggle="pill tooltip" title="Search" href="/searches" role="tab" aria-controls="pills-search" aria-selected="false">
+          <i class="fas fa-search"></i>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-notif-tab" data-toggle="pill tooltip" title="Notifications" href="/notifications" role="tab" aria-controls="pills-notif" aria-selected="false">
+          <i class="fas fa-bell"></i>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link <%= 'active' if @user == current_user %>" id="pills-profile-tab" data-toggle="pill tooltip" title="Profile" href="/users/<%= current_user.id %>" role="tab" aria-controls="pills-profile" aria-selected="<%= @user == current_user ? true : false %>">
+          <%= image_tag(current_user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "20x20", alt: "Profile pic") %>
+        </a>
+      </li>
+    </ul>
+
+    <div class="h-100">
+      <div class="profile-header">
+        <% if @user.header.attached? %>
+          <div style="background-image: url(<%= rails_blob_url(@user.header_thumbnail) %>)" class="img-fluid position-relative">
+        <% else %>
+          <div style="background-image: url(<%= asset_path(@user.header_thumbnail) %>)" class="img-fluid position-relative">
+        <% end %>
+          <%= image_tag(@user.avatar_thumbnail, :class => "rounded-circle mr-2 profile-pic-show position-absolute", size: "150x150", alt: "Profile pic") %>
+        </div>
+          <div class="d-flex justify-content-end mt-3">
+            <% if @user == current_user %>
+              <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-outline-danger mr-3" %>
+            <% else %>
+              <%= render 'friendship_status_button', user: @user %>
+            <% end %>
+          </div>
+      </div>
+      <h3 class="mt-4 ml-3 pl-2"><strong><%= @user.username %></strong></h3>
+      <% if @user.bio %>
+        <p class="ml-3 pl-2"><%= @user.bio %><p>
+      <% end %> 
+      <div class="mb-3">
+        <div>
+          <% unless @user.location.blank? %>
+            <span class="ml-3 pl-2">
+              <i class="fas fa-map-marker-alt mr-2 text-muted"></i>
+              <%= @user.location %>
+            </span>
+          <% end %>
+          <% if @user.birthday %>
+            <span class="ml-3 pl-2">
+              <i class="fas fa-birthday-cake mr-2 text-muted"></i>
+              <%= @user.birthday.strftime("%d %b") %>
+            </span>
+          <% end %> 
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div>
+          <%= link_to friends_user_path(:user_id => @user.id) do %>
+            <p class="ml-3 pl-2"><%= @user.mutual_friends.count %> friends</p>
+          <% end %>
+        </div>
+        <div>
+          <% if @user == current_user %>
+            <%= link_to "/account" do %>
+              <i class="fas fa-user-cog text-muted mr-2" style="font-size: 1.3rem"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <hr class="solid">
+
+      <div class="show-nav">
+        <ul class="nav nav-tabs d-flex justify-content-around col-12" id="myTab" role="tablist">
+          <li class="nav-item text-center col-6" role="presentation">
+            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Posts</a>
+          </li>
+          <li class="nav-item text-center col-6" role="presentation">
+            <a class="nav-link" id="likes-tab" data-toggle="tab" href="#likes" role="tab" aria-controls="likes" aria-selected="false">Likes</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+            <% @user.posts.each do |post| %>
+              <%= render 'posts_shared/posts', post: post %>
+              <% unless @user.posts.last == post %>
+                <hr class="solid">
+              <% end %>
+            <% end %>
+          </div>
+
+
+          <div class="tab-pane fade favorites" id="likes" role="tabpanel" aria-labelledby="likes-tab">
+            <% @user.favorited_by_type('Post').each do |fave| %>
+              <%= render 'favorites', fave: fave %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render 'posts_shared/new_post' %>
+  </div>
+  <%= render '/posts_shared/right_sidebar' %>
+</div>

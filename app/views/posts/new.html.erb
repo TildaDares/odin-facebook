@@ -1,11 +1,15 @@
 <% content_for(:title, 'New Post') %>
-<%= render 'nav' %>
+<%= render '/posts_shared/nav' %>
 <div class="container shadow mt-5 pb-4 col-lg-6"> 
   <%= bootstrap_form_with(model: @post, local: true) do |f| %>
+    <%= link_to :back do %>
+      <i class="fas fa-arrow-left mb-1 mt-3" style="font-size: 1.2rem"></i>
+    <% end %>
     <div class="profile-pic">
       <%= image_tag(current_user.avatar_thumbnail, :class => "rounded-circle mr-2", size: "25x25") %>
     </div>
     <%= f.rich_text_area :body, style: "overflow-wrap:break-word;", label: "New Post", label_class: "mb-4 text-color", placeholder: "What's on your mind?" %>
+    <%= f.alert_message "Please fix the errors below." %>
     <div class="d-flex justify-content-end">
       <%= f.submit "Create post", class: "btn shadow bg-color text-white text-center" %>
     </div>

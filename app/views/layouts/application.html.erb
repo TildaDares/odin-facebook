@@ -17,7 +17,7 @@
 
   <body>
     <% if flash[:notice] %>
-      <div class="alert alert-success alert-dismissible fade show container w-50 text-monospace alert-pos">
+      <div class="alert alert-success alert-dismissible fade show container text-monospace alert-pos">
         <p class="notice"><%= notice %></p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -25,7 +25,7 @@
       </div>
     <% end %>
     <% if flash[:alert] %>
-      <div class="alert alert-danger alert-dismissible fade show container w-50 text-monospace alert-pos">
+      <div class="alert alert-danger alert-dismissible fade show container text-monospace alert-pos">
         <%= alert %>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>

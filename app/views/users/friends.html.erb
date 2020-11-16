@@ -1,0 +1,64 @@
+<% content_for(:title, 'Friends') %>
+<%= render '/posts_shared/nav' %>
+<div class="d-flex justify-content-between">
+  <%= render '/posts_shared/left_sidebar' %>
+  <div class="container col-lg-6 w-stretch">
+    <%= render 'posts_shared/nav_buttons'%>
+    <div class="mr-3 ml-3">
+      <div class="mt-3 d-flex">
+        <%= link_to :back do %>
+          <i class="fas fa-arrow-left mb-1 mt-3" style="font-size: 1.2rem"></i>
+        <% end %>
+        <%= bootstrap_form_with(url: "/friends_search", local: true, method: :get, class: "w-100 ml-3 mt-2") do |f| %>
+          <div class="input-group search-bar">
+          <%= f.text_field :search, hide_label: true, placeholder: "Search", class: "rounded-search w-100 col-12", required: true %>
+          <button class="rounded-btn input-group-append d-block">
+            <%= f.hidden_field :user_id, :value => @user.id %>
+            <%= f.hidden_field :commit, :value => "Save" %>
+            <i class="fa fa-search text-muted"></i>
+          </button>
+          </div>  
+        <% end %>
+      </div>
+
+      <div class="tab-content mt-3" id="pills-tabContent">
+        <div class="tab-pane fade show" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"></div>
+        <div class="tab-pane fade show active" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+          <hr class="solid">
+          <% unless params[:commit] %>
+            <% if @user.mutual_friends.any? %>
+              <% @user.mutual_friends.each do |user| %>
+                <div class="d-flex justify-content-between mb-3">
+                  <%= render 'posts_shared/display_users', user: user %>
+                  <div>
+                    <% if current_user == @user %>
+                      <%= link_to "Unfriend", friendship_path(:id => user), method: :delete, class: "btn btn-outline-danger shadow" %><br/>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="text-center">No Friends Yet</p>
+            <% end %>
+          <% else %>
+            <% if @search_friends.empty? %>
+              <p class="text-center">Friend Not Found<p>
+            <% else %>
+              <% @search_friends.each do |user| %>
+                <div class="d-flex justify-content-between mb-3">
+                  <%= render 'posts_shared/display_users', user: user %>
+                  <div>
+                    <% if current_user == @user %>
+                      <%= link_to "Unfriend", friendship_path(:id => user), method: :delete, class: "btn btn-outline-danger shadow" %><br/>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render '/posts_shared/right_sidebar' %>
+</div>

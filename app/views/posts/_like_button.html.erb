@@ -1,0 +1,4 @@
+<div class="like-icon <%= 'text-color' if current_user.favorited?(post) %>" data-id="<%= post.id %>">
+  <i class="fas fa-heart mr-1"></i>
+  <span class="text-muted likes-count-<%= post.id %>"><%= post.favoritors.size %></span>
+</div>
