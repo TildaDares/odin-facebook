@@ -2,8 +2,6 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :posts, dependent: :destroy
-  has_one_attached :avatar
-  has_one_attached :header
   has_many :comments
   has_many :notifications
   has_many :friendships
@@ -14,6 +12,8 @@ class User < ApplicationRecord
   after_create_commit :add_default_avatar
   after_create_commit :add_default_header
   after_create_commit :send_confirmation_email
+  has_one_attached :avatar
+  has_one_attached :header
   validates :username, presence: true, length: { minimum: 1, maximum: 50 }
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
