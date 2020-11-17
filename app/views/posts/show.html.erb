@@ -57,7 +57,7 @@
       <hr class="solid mt-5">
       <div class="mt-5">
         <hr class="solid">
-        <% @post.comments.each do |comment| %>
+        <% @post.comments.order(created_at: :desc).each do |comment| %>
           <div class="pl-4 pr-4 mt-5 mb-5">
             <div class="d-flex justify-content-between">
               <div>

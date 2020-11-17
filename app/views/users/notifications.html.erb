@@ -38,7 +38,7 @@
 
 
     <div class="pt-2">
-      <% current_user.notifications.each do |notif| %>
+      <% current_user.notifications.order(created_at: :desc).each do |notif| %>
         <% sender = User.find(notif.sender_id) %>
           <div class="d-flex text-dark pl-3 justify-content-between pr-2">
             <%= link_to notif.url do %>
