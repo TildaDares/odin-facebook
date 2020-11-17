@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
   acts_as_favoritor
-  after_create_commit :add_default_avatar
-  after_create_commit :add_default_header
+  # after_create_commit :add_default_avatar
+  # after_create_commit :add_default_header
   after_create_commit :send_confirmation_email
   has_one_attached :avatar
   has_one_attached :header
@@ -77,31 +77,31 @@ class User < ApplicationRecord
     User.all - (friend_requests + mutual_friends + sent_requests)
   end
 
-  private
+  # private
 
-  def add_default_header
-    unless header.attached?
-      header.attach(
-        io: File.open(
-          Rails.root.join(
-            'app', 'assets', 'images', 'header.jpg'
-          )
-        ), filename: 'header.jpg',
-        content_type: 'image/jpg'
-      )
-    end
-  end
+  # def add_default_header
+  #   unless header.attached?
+  #     header.attach(
+  #       io: File.open(
+  #         Rails.root.join(
+  #           'app', 'assets', 'images', 'header.jpg'
+  #         )
+  #       ), filename: 'header.jpg',
+  #       content_type: 'image/jpg'
+  #     )
+  #   end
+  # end
 
-  def add_default_avatar
-    unless avatar.attached?
-      avatar.attach(
-        io: File.open(
-          Rails.root.join(
-            'app', 'assets', 'images', 'avatar.jpg'
-          )
-        ), filename: 'avatar.jpg',
-        content_type: 'image/jpg'
-      )
-    end
-  end
+  # def add_default_avatar
+  #   unless avatar.attached?
+  #     avatar.attach(
+  #       io: File.open(
+  #         Rails.root.join(
+  #           'app', 'assets', 'images', 'avatar.jpg'
+  #         )
+  #       ), filename: 'avatar.jpg',
+  #       content_type: 'image/jpg'
+  #     )
+  #   end
+  # end
 end
