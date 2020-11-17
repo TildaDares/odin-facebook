@@ -11,9 +11,9 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
   acts_as_favoritor
-  after_commit :add_default_avatar, on: :create
-  after_commit :add_default_header, on: :create
-  after_create :send_confirmation_email
+  after_create_commit :add_default_avatar
+  after_create_commit :add_default_header
+  after_create_commit :send_confirmation_email
   validates :username, presence: true, length: { minimum: 1, maximum: 50 }
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
