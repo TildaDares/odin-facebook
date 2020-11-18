@@ -43,6 +43,10 @@ gem 'figaro', '~> 1.2'
 
 gem 'jquery-rails', '~> 4.4'
 
+gem "aws-sdk-s3", require: false
+
+gem 'active_storage_validations', '~> 0.9.0'
+
 gem 'activerecord-session_store', '~> 1.1', '>= 1.1.3'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -63,10 +67,6 @@ group :development do
   gem 'letter_opener_web', '~> 1.4'
   gem 'listen', '~> 3.2'
   gem 'web-console', '>= 3.3.0'
-end
-
-group :production do
-  gem "aws-sdk-s3", require: false
 end
 
 group :test do

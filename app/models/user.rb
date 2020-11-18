@@ -16,6 +16,8 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { minimum: 1, maximum: 50 }
   validates :bio, length: { maximum: 160 }
   validates :location, length: { maximum: 30 }
+  validates :avatar, content_type: [:png, :jpg, :jpeg]
+  validates :header, content_type: [:png, :jpg, :jpeg]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
