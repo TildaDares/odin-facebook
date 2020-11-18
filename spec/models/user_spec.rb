@@ -30,6 +30,10 @@ RSpec.describe User, type: :model do
       should have_many(:posts)
     end
 
+    it 'tests the search asssociation' do
+      should have_many(:searches)
+    end
+
     it 'tests the comments association' do
       should have_many(:comments)
     end
