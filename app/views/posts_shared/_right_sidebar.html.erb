@@ -5,7 +5,9 @@
     <% next if user == current_user %>
     <div class="d-flex justify-content-between mb-3">
       <%= render 'posts_shared/display_users', user: user %>
-      <%= link_to "Add Friend", friendships_path(:friend_id => user), method: :post, class: "btn btn-outline-success shadow" %><br/>
+      <div>
+        <%= link_to "Add Friend", friendships_path(:friend_id => user), method: :post, class: "btn btn-outline-success shadow" %><br/>
+      </div>
     </div>
   <% end %>
 </div>

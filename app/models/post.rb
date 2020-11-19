@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   acts_as_favoritable
   has_rich_text :body
   has_one :action_text_rich_text, class_name: 'ActionText::RichText', as: :record

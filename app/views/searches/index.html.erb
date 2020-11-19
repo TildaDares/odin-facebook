@@ -33,10 +33,7 @@
               <% unless @users.empty? %>
                 <% @users.each do |user| %>
                   <div class="mt-4">
-                    <%= link_to user, class: "text-decoration-none" do %>
-                      <%= image_tag(user.avatar_thumbnail, :class => "rounded-circle mr-3", size: "30x30", alt: "Profile pic") %>
-                      <%= user.username %>
-                    <% end %>
+                    <%= render 'posts_shared/display_users', user: user %>
                   </div>
                 <% end %>
               <% else %>

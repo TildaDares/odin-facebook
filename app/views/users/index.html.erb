@@ -43,7 +43,9 @@
           <% next if user == current_user %>
           <div class="d-flex justify-content-between mb-3">
             <%= render 'posts_shared/display_users', user: user %>
-            <%= render 'friendship_status_button', user: user %>
+            <div>
+              <%= render 'friendship_status_button', user: user %>
+            </div>
           </div>
         <% end %>
       </div>

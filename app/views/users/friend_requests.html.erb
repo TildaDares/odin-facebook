@@ -51,13 +51,11 @@
           <hr class="solid">
           <% unless current_user.friend_requests.empty? %>
             <% current_user.friend_requests.each do |user| %>
-              <div class="">
-                <div class="d-flex justify-content-between mb-3">
-                  <%= render 'posts_shared/display_users', user: user %>
-                  <div>
-                    <%= link_to "Accept Request", friendships_path(:friend_id => user), method: :post, class: "btn btn-outline-success shadow mr-4" %>
-                    <%= link_to "Ignore Request", friendship_path(:id => user), method: :delete, class: "btn btn-outline-danger shadow" %><br/>
-                  </div>
+              <div class="d-flex justify-content-between mb-3 flex-column flex-sm-row flex-lg-row flex-md-row">
+                <%= render 'posts_shared/display_users', user: user %>
+                <div>
+                  <%= link_to "Accept Request", friendships_path(:friend_id => user), method: :post, class: "btn btn-outline-success shadow mr-4" %>
+                  <%= link_to "Ignore Request", friendship_path(:id => user), method: :delete, class: "btn btn-outline-danger shadow" %><br/>
                 </div>
               </div>
             <% end %>
@@ -69,12 +67,10 @@
           <hr class="solid">
           <% unless current_user.sent_requests.empty? %>
             <% current_user.sent_requests.each do |user| %>
-              <div class="">
-                <div class="d-flex justify-content-between mb-3">
-                  <%= render 'posts_shared/display_users', user: user %>
-                  <div>
-                    <%= link_to "Cancel Request", friendship_path(:id => user), method: :delete, class: "btn btn-outline-danger shadow" %><br/>
-                  </div>
+              <div class="d-flex justify-content-between mb-3">
+                <%= render 'posts_shared/display_users', user: user %>
+                <div>
+                  <%= link_to "Cancel Request", friendship_path(:id => user), method: :delete, class: "btn btn-outline-danger shadow" %><br/>
                 </div>
               </div>
             <% end %>

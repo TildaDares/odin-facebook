@@ -44,11 +44,10 @@
             <%= link_to notif.url do %>
               <div class="d-flex text-dark">
                 <%= image_tag(sender.avatar_thumbnail, :class => "rounded-circle mr-1", size: "20x20", alt: "Profile pic") %>
-                <strong class="pr-1"><%= sender.username%></strong>
-                <p><%= notif.message %></p>
+                <p><strong class="pr-1"><%= sender.username%></strong><%= notif.message %></p>
               </div>
             <% end %>
-            <small class="text-muted ml-3 pl-4"><%= time_difference(notif.created_at) %> ago</small>
+            <p class="text-muted ml-3 mt-2" style="font-size:0.8rem"><%= time_difference(notif.created_at) %> ago</p>
           </div>
         <hr class="solid">
       <% end %>
