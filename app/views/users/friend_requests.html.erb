@@ -51,9 +51,9 @@
           <hr class="solid">
           <% unless current_user.friend_requests.empty? %>
             <% current_user.friend_requests.each do |user| %>
-              <div class="d-flex justify-content-between mb-3 flex-column flex-sm-row flex-lg-row flex-md-row">
+              <div class="d-flex justify-content-between mb-3 mb-sm-5 flex-column flex-sm-row flex-lg-row flex-md-row">
                 <%= render 'posts_shared/display_users', user: user %>
-                <div>
+                <div class="mt-sm-2 mt-0">
                   <%= link_to "Accept Request", friendships_path(:friend_id => user), method: :post, class: "btn btn-outline-success shadow mr-4" %>
                   <%= link_to "Ignore Request", friendship_path(:id => user), method: :delete, class: "btn btn-outline-danger shadow" %><br/>
                 </div>
