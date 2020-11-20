@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @posts = current_user.posts + get_friends_posts
+    @posts = Post.where('user_id IN (?) OR user_id = ?', current_user.mutual_friends, current_user).order(created_at: :desc)
   end
 
   def new
@@ -52,15 +52,5 @@ class PostsController < ApplicationController
       @notif = user.notifications.build(message: 'liked your post', url: url_for(post), sender_id: current_user.id)
       @notif.save
     end
-  end
-
-  def get_friends_posts
-    friends_posts = []
-    current_user.mutual_friends.each do |friend|
-      friend.posts.each do |post|
-        friends_posts << post
-      end
-    end
-    friends_posts
   end
 end
