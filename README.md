@@ -13,6 +13,10 @@ This project is a Facebook clone. Read more [here](https://www.theodinproject.co
  - Add/Remove friends
  - Search for users, friends or posts
 
+You can login with
+Username - Harley Quinn
+Password - password
+
 The app has basic tests.
 
  [Live Preview](https://sheltered-lowlands-27506.herokuapp.com/)
