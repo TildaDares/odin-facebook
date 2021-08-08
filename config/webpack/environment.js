@@ -11,4 +11,13 @@ environment.plugins.append('Provide',
     })
 )
 
+environment.config.merge(
+  (module.exports = {
+    resolve: {
+      alias: {
+        jquery: "jquery/src/jquery",
+      },
+    },
+  })
+);
 module.exports = environment
