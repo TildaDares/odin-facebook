@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.build(comment: params[:comment], post: @post)
     if @comment.save
-      send_comment_notification(@post.user, @post, @comment)
+      send_notification('commented on your post', @post.user, url_for([@post, @comment]))
       redirect_to post_path(@post)
     else
       flash[:alert] = 'One photo per comment and comments cannot be empty'
@@ -30,24 +30,8 @@ class CommentsController < ApplicationController
     if current_user.favorited?(@comment)
       current_user.unfavorite(@comment)
     else
-      send_like_notification(@comment.user, @comment.post, @comment)
+      send_notification('liked your comment', @comment.user, url_for([post, comment]))
       current_user.favorite(@comment)
-    end
-  end
-
-  private
-
-  def send_comment_notification(user, post, comment)
-    unless user == current_user
-      @notif = user.notifications.build(message: 'commented on your post', url: url_for([post, comment]), sender_id: current_user.id)
-      @notif.save
-    end
-  end
-
-  def send_like_notification(user, post, comment)
-    unless user == current_user
-      @notif = user.notifications.build(message: 'liked your comment', url: url_for([post, comment]), sender_id: current_user.id)
-      @notif.save
     end
   end
 end

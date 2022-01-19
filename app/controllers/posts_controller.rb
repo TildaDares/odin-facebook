@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     if current_user.favorited?(@post)
       current_user.unfavorite(@post)
     else
-      send_like_notification(@post.user, @post)
+      send_notification('liked your post', @post.user, url_for(@post))
       current_user.favorite(@post)
     end
   end
@@ -45,12 +45,5 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body)
-  end
-
-  def send_like_notification(user, post)
-    unless user == current_user
-      @notif = user.notifications.build(message: 'liked your post', url: url_for(post), sender_id: current_user.id)
-      @notif.save
-    end
   end
 end

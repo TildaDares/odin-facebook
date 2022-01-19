@@ -21,9 +21,10 @@ class UsersController < ApplicationController
     end
   end
 
+  # searches for a friend
   def friends_search
     @user = User.find(params[:user_id])
-    @search_friends = current_user.friends.where('username ILIKE ?', "%#{params[:search]}%")
+    @search_friends = @user.friends.where('username ILIKE ?', "%#{params[:search]}%")
     render 'friends'
   end
 

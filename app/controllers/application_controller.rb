@@ -23,4 +23,11 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :time_difference
+
+  def send_notification(message, user, link)
+    unless user == current_user # prevents user from sending notification to itself
+      @notif = user.notifications.build(message: message, url: link, sender_id: current_user.id)
+      @notif.save
+    end
+  end
 end
