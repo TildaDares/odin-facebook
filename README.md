@@ -2,6 +2,8 @@
 
 This project is a Facebook clone. Read more [here](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
 
+<img width="1280" alt="Screenshot 2021-12-02 at 09 20 13" src="https://user-images.githubusercontent.com/63427719/144384144-06b18d1a-6187-4933-9895-9f41c85ad76c.png">
+
 # Features
  Users can
  - Sign in/Sign up with facebook
