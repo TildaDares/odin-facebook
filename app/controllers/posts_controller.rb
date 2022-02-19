@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @posts = Post.where('user_id IN (?) OR user_id = ?', current_user.mutual_friends, current_user).order(created_at: :desc)
+    @posts = Post.where('user_id IN (?) OR user_id = ?', current_user.mutual_friends, current_user).order(created_at: :desc).includes(:user, :rich_text_body)
   end
 
   def new
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).find(params[:id])
   end
 
   def destroy
