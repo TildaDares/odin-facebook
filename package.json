@@ -1,6 +1,9 @@
 {
   "name": "odin_facebook",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@rails/actioncable": "^6.0.0",
