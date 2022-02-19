@@ -2,7 +2,7 @@
   "name": "odin_facebook",
   "private": true,
   "engines": {
-    "node": "16.x"
+    "node": "14.17.5"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
