@@ -1,4 +1,4 @@
-<% if current_user.friendship_status(user) == 'Cancel Request' || current_user.friendship_status(user) == 'Unfriend' %>
+<% if friendship_status(user) == 'Cancel Request' || friendship_status(user) == 'Unfriend' %>
   <% status = 'danger' %>
   <% path = friendship_path(:id => user) %>
   <% rest_method = 'delete' %>
@@ -7,6 +7,7 @@
   <% path = friendships_path(:friend_id => user) %>
   <% rest_method = 'post' %>
 <% end %>
+
 <%= link_to path, method: "#{rest_method}", class: "btn btn-outline-#{status} shadow mr-4" do %>
-  <%= current_user.friendship_status(user) %>
+  <%= friendship_status(user) %>
 <% end %>

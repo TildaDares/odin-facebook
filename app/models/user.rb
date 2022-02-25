@@ -66,18 +66,6 @@ class User < ApplicationRecord
     friends.map { |friend| friend unless friend.friends.include?(self) }.compact
   end
 
-  def friendship_status(user)
-    if friend_requests.include?(user)
-      'Accept Request'
-    elsif mutual_friends.include?(user)
-      'Unfriend'
-    elsif sent_requests.include?(user)
-      'Cancel Request'
-    else
-      'Add Friend'
-    end
-  end
-
   def send_confirmation_email
     ConfirmationMailer.with(user: self).confirmation_email.deliver_now
   end
