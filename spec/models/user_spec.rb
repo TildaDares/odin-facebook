@@ -89,23 +89,5 @@ RSpec.describe User, type: :model do
     it 'returns the users that the current_user is not connected to' do
       expect(@user.strangers).not_to include(@friend1, @friend2, @friend3, @friend4)
     end
-
-    context 'friendship buttons' do
-      it 'returns an add friend text' do
-        expect(@user.friendship_status(@friend5)).to eq('Add Friend')
-      end
-
-      it 'returns an unfriend text' do
-        expect(@user.friendship_status(@friend3)).to eq('Unfriend')
-      end
-
-      it 'returns an accept request text' do
-        expect(@user.friendship_status(@friend1)).to eq('Accept Request')
-      end
-
-      it 'returns a cancel request text' do
-        expect(@user.friendship_status(@friend4)).to eq('Cancel Request')
-      end
-    end
   end
 end
