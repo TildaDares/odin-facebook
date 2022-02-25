@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :all_users, :time_difference
+
   protected
 
   def configure_permitted_parameters
@@ -16,13 +18,9 @@ class ApplicationController < ActionController::Base
     current_user.strangers.sample(3)
   end
 
-  helper_method :all_users
-
   def time_difference(time)
     distance_of_time_in_words(Time.now, time, scope: 'datetime.distance_in_words.short', include_seconds: true)
   end
-
-  helper_method :time_difference
 
   def send_notification(message, user, link)
     unless user == current_user # prevents user from sending notification to itself
