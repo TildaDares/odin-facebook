@@ -85,9 +85,5 @@ RSpec.describe User, type: :model do
     it "returns the user's sent requests" do
       expect(@user.sent_requests).to eq([@friend4])
     end
-
-    it 'returns the users that the current_user is not connected to' do
-      expect(@user.strangers).not_to include(@friend1, @friend2, @friend3, @friend4)
-    end
   end
 end

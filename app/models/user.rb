@@ -70,7 +70,8 @@ class User < ApplicationRecord
     ConfirmationMailer.with(user: self).confirmation_email.deliver_now
   end
 
-  def strangers
-    User.all - (friend_requests + mutual_friends + sent_requests)
+  # suggests people for current_user to friend
+  def strangers_to_friend
+    User.all - (mutual_friends + sent_requests)
   end
 end
