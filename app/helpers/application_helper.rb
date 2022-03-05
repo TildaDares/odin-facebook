@@ -10,4 +10,8 @@ module ApplicationHelper
       'Add Friend'
     end
   end
+
+  def time_difference(time)
+    distance_of_time_in_words(Time.now, time, scope: 'datetime.distance_in_words.short', include_seconds: true)
+  end
 end
