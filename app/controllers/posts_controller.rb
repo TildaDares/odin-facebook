@@ -28,6 +28,9 @@ class PostsController < ApplicationController
     if @post.destroy
       flash[:notice] = 'Post successully destroyed'
       redirect_to root_path
+    else
+      flash[:alert] = 'We were unable to delete this post.'
+      redirect_to post_path(@post)
     end
   end
 

@@ -46,11 +46,6 @@
             <i class="far fa-comment text-muted"></i>
             <span class="text-muted"><%= @post.comments.size %></span>
           </div>
-          <div class="social-likes social-likes_single" style="font-size: 1.4rem" data-counters="no" data-url="https://sheltered-lowlands-27506.herokuapp.com/posts/<%= @post.id %>" data-title="Check out my post" data-single-title="">
-            <div class="facebook" title="Share link on Facebook">Facebook</div>
-            <div class="twitter" data-via="B_eautifulChaos" title="Share link on Twitter">Twitter</div>
-            <div class="pinterest" title="Share image on Pinterest" data-media="https://unsplash.com/photos/4wz1YsANFB0">Pinterest</div>
-          </div>
         </div>
 
 
@@ -90,11 +85,6 @@
               <%= link_to toggle_favorite_post_comment_path(@post, comment), remote: true, method: :post, class: "text-decoration-none" do %>
                 <%= render '/comments/like_button', comment: comment %>
               <% end %>
-              <div class="social-likes social-likes_single" data-counters="no" data-url="https://sheltered-lowlands-27506.herokuapp.com/posts/<%= @post.id %>/comments/<%= comment.id %>" data-title="Check out my comment" data-single-title="">
-                <div class="facebook" title="Share link on Facebook">Facebook</div>
-                <div class="twitter" data-via="B_eautifulChaos" title="Share link on Twitter">Twitter</div>
-                <div class="pinterest" title="Share image on Pinterest" data-media="https://unsplash.com/photos/4wz1YsANFB0">Pinterest</div>
-              </div>
             </div>
 
             <hr class="solid">
