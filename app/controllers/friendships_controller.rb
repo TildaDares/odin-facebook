@@ -31,15 +31,10 @@ class FriendshipsController < ApplicationController
   def friendship_message(friend_id)
     user = User.find(friend_id)
     if current_user.friend_requests.include?(user)
-      send_notification(user)
+      send_notification('accepted your request', current_user, url_for(current_user))
       flash[:notice] = 'Friend Request successfully accepted'
     else
       flash[:notice] = 'Friend Request successfully sent'
     end
-  end
-
-  def send_notification(user)
-    @notif = user.notifications.build(message: 'accepted your request', url: url_for(current_user), sender_id: current_user.id)
-    @notif.save
   end
 end

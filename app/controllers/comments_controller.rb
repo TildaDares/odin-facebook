@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     if current_user.favorited?(@comment)
       current_user.unfavorite(@comment)
     else
-      send_notification('liked your comment', @comment.user, url_for([post, comment]))
+      send_notification('liked your comment', @comment.user, url_for([@comment.post, @comment]))
       current_user.favorite(@comment)
     end
   end
